@@ -1,53 +1,125 @@
 let playerWin = 0
 let comWin = 0
-const buttons = document.querySelectorAll("button");
+let text = ''
 let playerChoice = ''
+let result = document.querySelector('#result');
+let player = document.querySelector('#player');
+let com = document.querySelector('#com');
+let round = 0
+let playerScore = document.querySelector('#pscore')
+let comScore = document.querySelector('#cscore')
+
+
+const buttons = document.querySelectorAll("button");
+
+Scenario = [' Computer Wins', ' Human Wins', " Its a Tie"]
 
 
 function play() {
+
+    
     const humanSelection = playerChoice
     const computerSelection = comChoice;
+    //console.log(humanSelection);
+    //console.log(computerSelection);
+    
+  
 
-    console.log(humanSelection);
-    console.log(computerSelection);
+    if (round > 0) {
+        result.removeChild(text)
+        player.removeChild(playerText)
+        com.removeChild(comText)
+        playerScore.removeChild(playerWinCount)
+        comScore.removeChild(comWinCount)
+        
+    }
 
-    if (humanSelection == computerSelection) {
-        console.log ('Tie')
+
+
+
+    
+        if (humanSelection == computerSelection) {
+            text = document.createTextNode(Scenario[2]);
+            result.appendChild(text)
+            round++
+        }
+    
+
+
+
+
+        //human win
+        if ((humanSelection == 'Rock') && (computerSelection == 'Scissors')) {
+            text = document.createTextNode(Scenario[1]);
+            result.appendChild(text)
+            round++
+            playerWin++
+
+        } else if ((humanSelection == 'Paper') && (computerSelection == 'Rock')) {
+        
+            text = document.createTextNode(Scenario[1]);
+            result.appendChild(text)
+            round++
+            playerWin++
+
+        } else if ((humanSelection == 'Scissors') && (computerSelection == 'Paper')) {
+        
+            text = document.createTextNode(Scenario[1]);
+            result.appendChild(text)
+            round++
+            playerWin++
+
+        }
+
+        //Com win
+        if ((computerSelection == 'Rock') && (humanSelection == 'Scissors')) {
+            text = document.createTextNode(Scenario[0]);
+            result.appendChild(text)
+            round++
+            comWin++
+        } else if ((computerSelection == 'Paper') && (humanSelection == 'Rock')) {
+        
+            text = document.createTextNode(Scenario[0]);
+            result.appendChild(text)
+            round++
+            comWin++
+
+        } else if ((computerSelection == 'Scissors') && (humanSelection == 'Paper')) {
+        
+            text = document.createTextNode(Scenario[0]);
+            result.appendChild(text)
+            round++
+            comWin++
+
+        }
+    
+    if (playerWin == 5 || comWin == 5) {
+        result.remove()
+        player.remove()
+        com.remove()
+          
+          
+        
     }
     
-    //human win
-    if ((humanSelection == 'Rock') && (computerSelection == 'Scissors')) {
-        console.log('Human Wins')
-        playerWin++
-    } else if ((humanSelection == 'Paper') && (computerSelection == 'Rock')) {
-        
-        console.log('Human Wins')
-        playerWin++
+    playerText = document.createTextNode(" " + humanSelection);
+    player.appendChild(playerText)
 
-    } else if ((humanSelection == 'Scissors') && (computerSelection == 'Paper')) {
-        
-        console.log('Human Wins')
-        playerWin++
+    comText = document.createTextNode(" " + computerSelection);
+    com.appendChild(comText)
 
-    }
+    playerWinCount = document.createTextNode(" " + playerWin)
+    playerScore.appendChild(playerWinCount)
 
-     //Com win
-    if ((computerSelection == 'Rock') && (humanSelection == 'Scissors')) {
-        console.log('Computer Wins')
-        comWin++
-    } else if ((computerSelection == 'Paper') && (humanSelection == 'Rock')) {
-        
-        console.log('Computer Wins')
-        comWin++
+    comWinCount = document.createTextNode(" " + comWin)
+    comScore.appendChild(comWinCount)
 
-    } else if ((computerSelection == 'Scissors') && (humanSelection == 'Paper')) {
-        
-        console.log('Computer Wins')
-        comWin++
+    //console.log(round)
+    console.log(playerWin)
+
+
 
     }
-
-}
 
 
 
@@ -93,6 +165,6 @@ function getComputerChoice(min, max) {
 
 getComputerChoice(1, 3)
 
-
+//function winCount {
 
 
